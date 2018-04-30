@@ -1,0 +1,19 @@
+{
+  "name": "deepblue.js",
+  "version": "1.0.0",
+  "description": "Humble attempt to recreate IBM's Deep Blue with minimax, alfa-beta pruning, reinforcement learning and Tensorflow.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krokowski0x/DeepBlue.js.git"
+  },
+  "author": "Rafał Krókowski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krokowski0x/DeepBlue.js/issues"
+  },
+  "homepage": "https://github.com/krokowski0x/DeepBlue.js#readme"
+}
