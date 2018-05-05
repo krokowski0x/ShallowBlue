@@ -1,0 +1,20 @@
+$white-field: #EFE7DA;
+$black-field: #5E574D;
+
+.chessboard {
+  display: grid;
+  grid-template-columns: repeat(8, 50px);
+  grid-template-rows: repeat(8, 50px);
+}
+
+.field {
+  border: 1px solid black;
+}
+
+.black {
+  background-color: $black-field;
+}
+
+.white {
+  background-color: $white-field;
+}
