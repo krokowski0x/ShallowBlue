@@ -1,20 +1,23 @@
-$white-field: #EFE7DA;
-$black-field: #5E574D;
+$white-field: #FFF;
+$black-field: #000;
+$bg-color: #24292e;
 
-.chessboard {
-  display: grid;
-  grid-template-columns: repeat(8, 50px);
-  grid-template-rows: repeat(8, 50px);
+* {
+  background-color: $bg-color;
+  color: #FFF;
+  font-family: sans-serif;
 }
 
-.field {
-  border: 1px solid black;
-}
+// .chessboard {
+//   display: grid;
+//   grid-template-columns: repeat(8, 50px);
+//   grid-template-rows: repeat(8, 50px);
+// }
 
 .black {
-  background-color: $black-field;
+  fill: $black-field;
 }
 
 .white {
-  background-color: $white-field;
+  fill: $white-field;
 }
