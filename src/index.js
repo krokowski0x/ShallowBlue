@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styles from './styles.scss';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import Game from './containers/Game';
+import reducer from './reducers/MoveReducer';
 
-import Chessboard from './components/Chessboard';
+const store = createStore(
+  reducer
+);
 
-const App = () => {
-  return (
-      <div>
-        <Chessboard />
-      </div>
-  );
-};
-
-ReactDOM.render(<App />, document.getElementById("app-container"));
+ReactDOM.render(
+  <Provider store={store}>
+    <Game />
+  </Provider>,
+  document.getElementById('app-container'),
+);

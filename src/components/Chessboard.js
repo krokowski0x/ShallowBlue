@@ -1,23 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-class Chessboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      fields: Array.from({length: 64}, (value, key) => key),
-    };
-  }
-  render() {
-  let { fields } = this.state;
-
-    return (
-      <div className='chessboard'>
-        {fields.map(field => {
-          return <div key={field} className={'field ' + (field % 2 ? 'black' : 'white')} >{field}</div>;
-        })}
-      </div>
-    );
-  }
+const Chessboard = () => {
+  return (
+    <div className='chessboard'>
+      <svg viewBox="0 0 220 100" >
+        <rect x="0" y="0" width="100" height="100" />
+      </svg>
+    </div>
+  );
 }
 
 export default Chessboard;
