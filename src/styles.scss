@@ -10,21 +10,29 @@ $bg-color: #24292e;
 
 .App {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 50% 40%;
+  grid-gap: 10%
 }
 
 .chessboard {
-  width: 800px;
-  height: 800px;
+  width: 640px;
+  height: 640px;
   grid-column: 1;
   display: grid;
   grid-template-columns: repeat(8, 80px);
   grid-template-rows: repeat(8, 80px);
   .black {
-    fill: $black-field;
+    fill: lighten($black-field, 40%);
   }
   .white {
-    fill: $white-field;
+    fill: lighten($white-field, 40%);
+  }
+  svg {
+    position: absolute;
+  }
+  img {
+    background-color: transparent;
+    position: relative;
   }
 }
 
