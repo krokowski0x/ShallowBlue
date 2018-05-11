@@ -1,21 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-import Chessboard from './components/Chessboard';
+import Game from './containers/Game';
 import MovesHistory from './components/MovesHistory';
 
-const App = props => (
+const App = () => (
   <div className="App">
-    <h1>{props.title}</h1>
-    <Chessboard game={props.game} />
+    <h1>ShallowBlue.js</h1>
+    <Game />
     <MovesHistory />
   </div>
 );
-
-
-App.propTypes = {
-  title: PropTypes.string.isRequired,
-  game: PropTypes.object.isRequired,
-};
 
 export default App;

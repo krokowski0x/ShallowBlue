@@ -1,14 +1,16 @@
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { moved } from '../actions/actions';
 
-import App from '../App';
+import Chessboard from '../components/Chessboard';
 
 const mapStateToProps = state => ({
-  title: state.title,
-  game: state.game,
+  chess: state.chess,
 });
 
-const Game = connect(
-  mapStateToProps,
-)(App);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ moved }, dispatch);
+}
 
+const Game = connect(mapStateToProps, mapDispatchToProps)(Chessboard);
 export default Game;

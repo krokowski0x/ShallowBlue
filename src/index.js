@@ -2,17 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import Game from './containers/Game';
+import App from './App';
 import reducer from './reducers/MoveReducer';
 import styles from './styles.scss';
 
-const store = createStore(
-  reducer
-);
+const store = createStore(reducer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Game />
+    <App />
   </Provider>,
   document.getElementById('app-container'),
 );
