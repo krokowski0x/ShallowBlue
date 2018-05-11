@@ -4,14 +4,14 @@ import { PIECE_MOVED } from '../actions/actions';
 const chess = new Chess();
 
 const initialState = {
-  title: 'ShallowBlue.js',
-  game: chess,
+  chess,
 };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case PIECE_MOVED:
-      return state.game.move();
+      state.chess.move(action.where);
+      return state;
     default:
       return state;
   }
