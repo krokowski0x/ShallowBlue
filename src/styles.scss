@@ -10,14 +10,42 @@ $bg-color: #24292e;
 
 .App {
   display: grid;
-  grid-template-columns: 50% 40%;
-  grid-gap: 10%
+  grid-template-columns: 5% 56% 35%;
+  grid-template-rows: 5% 86% 5%;
+  grid-gap: 2%;
+  h1 {
+    grid-column: 1 / 3;
+    grid-row: 1;
+  }
+}
+p {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+.rows {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.cols {
+  grid-column: 2;
+  grid-row: 3;
+  p {
+    float: left;
+  }
 }
 
 .chessboard {
   width: 640px;
   height: 640px;
-  grid-column: 1;
+  grid-column: 2;
+  grid-row: 2;
   display: grid;
   grid-template-columns: repeat(8, 80px);
   grid-template-rows: repeat(8, 80px);
@@ -26,6 +54,9 @@ $bg-color: #24292e;
   }
   .white {
     fill: lighten($white-field, 40%);
+  }
+  .available {
+    fill: blue;
   }
   svg {
     position: absolute;
@@ -38,7 +69,8 @@ $bg-color: #24292e;
 }
 
 .moves {
-  grid-column: 2;
+  grid-column: 3;
+  grid-row: 2 / 4;
   border: 2px solid white;
   border-radius: 10px;
   width: 300px;
