@@ -9,7 +9,7 @@ const Square = (props) => {
   return (
     <rect
       onClick={() => console.log(index)}
-      key={`${String.fromCharCode(Math.floor(index / 8) + 97)}${(index % 8) + 1}`}
+      id={`${String.fromCharCode(Math.floor(index % 8) + 97)}${Math.floor(index / 8) + 1}`}
       x={calcX(index)}
       y={calcY(index)}
       width="12.5"
