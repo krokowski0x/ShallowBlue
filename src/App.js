@@ -10,9 +10,9 @@ const helperArray = Array.from({ length: 8 }, (v, k) => k + 1);
 const App = () => (
   <div className="App">
     <h1>ShallowBlue.js</h1>
-    <div className="rows">{helperArray.map(i => <p key={i}>{i}</p>)}</div>
+    <div className="rows">{helperArray.map(i => <p key={i}>{9 - i}</p>)}</div>
     <Chessboard chess={chess} />
-    <MovesHistory />
+    <MovesHistory chess={chess} />
     <div className="cols">{helperArray.map(i => <p key={i}>{String.fromCharCode(i + 96)}</p>)}</div>
   </div>
 );

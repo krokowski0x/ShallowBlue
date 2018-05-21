@@ -8,17 +8,14 @@ class Chessboard extends Component {
     super(props);
     this.calcX = index => (index % 8) * 12.5;
     this.calcY = index => Math.floor(index / 8) * 12.5;
-    this.calcSquare = (x, y) => `${String.fromCharCode(Math.floor(x / 80) + 97)}${9 - Math.floor(y / 80)}`;
+    this.calcSquare = (x, y) => `${String.fromCharCode(Math.floor(x / 80) + 96)}${9 - Math.floor(y / 80)}`;
     this.makeMove = () => {
       const possibleMoves = this.state.chess.moves();
-      let { from, to, color, piece } = this.state.chess
-        .move(possibleMoves[Math.floor(Math.random() * possibleMoves.length)]);
-      const translateY = (from[0].charCodeAt(0) - to[0].charCodeAt(0)) * 80;
-      const translateX = (from[1] - to[1]) * 80;
+      this.state.chess.move(possibleMoves[Math.floor(Math.random() * possibleMoves.length)]);
       this.setState(this.state.chess);
     };
     this.handleStart = (e) => {
-      const square = this.calcSquare(e.clientX, e.clientY)
+      const square = this.calcSquare(e.clientX, e.clientY);
       this.setState({ from: square });
     };
     this.handleStop = (e) => {
@@ -27,7 +24,7 @@ class Chessboard extends Component {
         this.state.chess.move({ from: this.state.from, to: square });
         this.setState(this.state.chess);
       }
-      setTimeout(this.makeMove(), 1000);
+      this.makeMove();
     };
 
     this.state = {
@@ -41,6 +38,7 @@ class Chessboard extends Component {
       .replace(/\./g, 'a')
       .replace(/abcdefgh/, '')
       .split('');
+    console.log(this.state.chess.moves());
     console.log(this.state.chess.ascii());
     return (
       <div className="chessboard">
