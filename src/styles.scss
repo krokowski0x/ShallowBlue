@@ -1,5 +1,6 @@
 $white-field: #FFF;
 $black-field: #000;
+$available-field: rgb(135,206,250);
 $bg-color: #24292e;
 
 * {
@@ -9,15 +10,18 @@ $bg-color: #24292e;
 }
 
 .App {
+  margin: 5%;
   display: grid;
-  grid-template-columns: 5% 56% 35%;
+  grid-template-columns: 5% 50% 41%;
   grid-template-rows: 5% 86% 5%;
   grid-gap: 2%;
   h1 {
-    grid-column: 1 / 3;
+    text-align: center;
+    grid-column: 2;
     grid-row: 1;
   }
 }
+
 p {
   width: 80px;
   height: 80px;
@@ -52,11 +56,14 @@ p {
   .black {
     fill: lighten($black-field, 40%);
   }
+  .black.available {
+    fill: darken($available-field, 30%);
+  }
   .white {
     fill: lighten($white-field, 40%);
   }
-  .available {
-    fill: blue;
+  .white.available {
+    fill: $available-field;
   }
   svg {
     position: absolute;
@@ -69,14 +76,29 @@ p {
 }
 
 .moves {
+  width: 50%;
+  margin: 0 auto;
   grid-column: 3;
   grid-row: 2 / 4;
   border: 2px solid white;
   border-radius: 10px;
-  width: 300px;
   height: 616px;
   padding: 10px;
-  .h2 {
+  h2 {
+    font-size: 2em;
     text-align: center;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    li {
+      padding: 5px;
+      margin: 5px;
+      font-weight: bold;
+      span {
+        margin: auto 0;
+        line-height: 100%;
+      }
+    }
   }
 }

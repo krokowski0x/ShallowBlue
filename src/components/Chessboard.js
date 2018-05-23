@@ -8,23 +8,45 @@ class Chessboard extends Component {
     super(props);
     this.calcX = index => (index % 8) * 12.5;
     this.calcY = index => Math.floor(index / 8) * 12.5;
-    this.calcSquare = (x, y) => `${String.fromCharCode(Math.floor(x / 80) + 96)}${9 - Math.floor(y / 80)}`;
+    this.calcSquare = (x, y) => `${String.fromCharCode(Math.floor(x / 80) + 95)}${10 - Math.floor(y / 80)}`;
+
     this.makeMove = () => {
       const possibleMoves = this.state.chess.moves();
       this.state.chess.move(possibleMoves[Math.floor(Math.random() * possibleMoves.length)]);
       this.setState(this.state.chess);
+      this.props.onMove(this.state.chess);
     };
+
     this.handleStart = (e) => {
       const square = this.calcSquare(e.clientX, e.clientY);
-      this.setState({ from: square });
+      console.log(e.clientX, e.clientY);
+      console.log(square);
+      const moves = this.state.chess.moves({ square });
+      moves.forEach((possibleMove) => {
+        if (possibleMove.length === 3)
+          possibleMove = possibleMove.slice(1);
+
+        const move = document.getElementById(possibleMove);
+        move.classList.add('available');
+      });
+      this.setState({ from: square, moves });
     };
+
     this.handleStop = (e) => {
       const square = this.calcSquare(e.x, e.y);
-      if (this.state.chess.moves().includes(square)) {
+      this.state.moves.forEach((possibleMove) => {
+        if (possibleMove.length === 3)
+          possibleMove = possibleMove.slice(1);
+
+        const move = document.getElementById(possibleMove);
+        move.classList.remove('available');
+      });
+      if (this.state.chess.moves({ from: this.state.from }).includes(square)) {
         this.state.chess.move({ from: this.state.from, to: square });
         this.setState(this.state.chess);
+        this.props.onMove(this.state.chess);
+        this.makeMove();
       }
-      this.makeMove();
     };
 
     this.state = {
@@ -38,7 +60,6 @@ class Chessboard extends Component {
       .replace(/\./g, 'a')
       .replace(/abcdefgh/, '')
       .split('');
-    console.log(this.state.chess.moves());
     console.log(this.state.chess.ascii());
     return (
       <div className="chessboard">
