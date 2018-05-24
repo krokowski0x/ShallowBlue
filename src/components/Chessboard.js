@@ -19,30 +19,42 @@ class Chessboard extends Component {
 
     this.handleStart = (e) => {
       const square = this.calcSquare(e.clientX, e.clientY);
-      console.log(e.clientX, e.clientY);
-      console.log(square);
+
       const moves = this.state.chess.moves({ square });
       moves.forEach((possibleMove) => {
-        if (possibleMove.length === 3)
-          possibleMove = possibleMove.slice(1);
+        let move = possibleMove;
+        if (move.length === 3)
+          move = move.slice(1);
+        if (move.length === 4)
+          move = move.slice(2);
 
-        const move = document.getElementById(possibleMove);
-        move.classList.add('available');
+        const moveElem = document.getElementById(move);
+        moveElem.classList.add('available');
       });
       this.setState({ from: square, moves });
     };
 
     this.handleStop = (e) => {
       const square = this.calcSquare(e.x, e.y);
-      this.state.moves.forEach((possibleMove) => {
-        if (possibleMove.length === 3)
-          possibleMove = possibleMove.slice(1);
 
-        const move = document.getElementById(possibleMove);
-        move.classList.remove('available');
+      this.state.moves.forEach((possibleMove) => {
+        let move = possibleMove;
+
+        if (move.length === 3) move = move.slice(1);
+        if (move.length === 4) move = move.slice(2);
+
+        const moveElem = document.getElementById(move);
+        moveElem.classList.remove('available');
       });
-      if (this.state.chess.moves({ from: this.state.from }).includes(square)) {
-        this.state.chess.move({ from: this.state.from, to: square });
+
+      let move = null;
+      this.state.moves
+        .forEach((possibleMove) => {
+          if (possibleMove.includes(square)) move = possibleMove;
+        });
+
+      if (move) {
+        this.state.chess.move(move);
         this.setState(this.state.chess);
         this.props.onMove(this.state.chess);
         this.makeMove();
