@@ -1,7 +1,11 @@
 $white-field: #FFF;
 $black-field: #000;
 $available-field: rgb(135,206,250);
+
 $bg-color: #24292e;
+$warning-color: red;
+
+$square-size: 80px;
 
 * {
   background-color: $bg-color;
@@ -23,9 +27,9 @@ $bg-color: #24292e;
 }
 
 p {
-  width: 80px;
-  height: 80px;
-  line-height: 80px;
+  width: $square-size;
+  height: $square-size;
+  line-height: $square-size;
   padding: 0;
   margin: 0;
   text-align: center;
@@ -46,13 +50,13 @@ p {
 }
 
 .chessboard {
-  width: 640px;
-  height: 640px;
+  width: $square-size * 8;
+  height:$square-size * 8;
   grid-column: 2;
   grid-row: 2;
   display: grid;
-  grid-template-columns: repeat(8, 80px);
-  grid-template-rows: repeat(8, 80px);
+  grid-template-columns: repeat(8, $square-size);
+  grid-template-rows: repeat(8, $square-size);
   .black {
     fill: lighten($black-field, 40%);
   }
@@ -84,6 +88,7 @@ p {
   border-radius: 10px;
   height: 616px;
   padding: 10px;
+  overflow: hidden;
   h2 {
     font-size: 2em;
     text-align: center;
@@ -92,12 +97,29 @@ p {
     list-style-type: none;
     padding: 0;
     li {
+      display: grid;
+      grid-column: repeat(3, 1fr);
       padding: 5px;
       margin: 5px;
       font-weight: bold;
+      img {
+        height: 40px;
+        width: 40px;
+        grid-column: 1;
+        display: block;
+      }
       span {
-        margin: auto 0;
-        line-height: 100%;
+        line-height: 40px;
+        vertical-align: middle;
+        text-align: center;
+      }
+      span.moveRecord {
+        grid-column: 2;
+      }
+      span.captureRecord {
+        grid-column: 3;
+        text-transform: uppercase;
+        color: $warning-color;
       }
     }
   }

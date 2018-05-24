@@ -5,11 +5,11 @@ class MovesHistory extends Component {
     super(props);
     this.state = {
       chess: props.chess,
-    }
+    };
   }
+
   render() {
-    let history = this.state.chess.history({ verbose: true })
-    console.log(history.length);
+    const history = this.state.chess.history({ verbose: true });
     return (
       <div className="moves">
         <h2>Moves</h2>
@@ -17,15 +17,15 @@ class MovesHistory extends Component {
         <ul>
           {history.map(record => (
             <li key={record.san}>
-              <span>
-                <img
-                  alt="Chess Piece"
-                  draggable="false"
-                  src={`src/pieces/${record.piece}${record.color}.svg`}
-                  height="30px"
-                  width="30px"
-                />
-                {record.from} -> {record.to}</span>
+              <img
+                alt="Chess Piece"
+                draggable="false"
+                src={`src/pieces/${record.piece}${record.color}.svg`}
+              />
+              <span className="moveRecord">
+                {record.from} &#10230; {record.to}
+              </span>
+              {record.captured ? <span className="captureRecord">Capture!</span> : <span />}
             </li>
           ))}
         </ul>
