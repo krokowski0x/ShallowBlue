@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 
 import Square from './Square';
+import { calcX, calcY, calcSquare, possibleMoves } from '../utils/positioning';
 
 class Chessboard extends Component {
   constructor(props) {
     super(props);
-    this.calcX = index => (index % 8) * 12.5;
-    this.calcY = index => Math.floor(index / 8) * 12.5;
-    this.calcSquare = (x, y) => `${String.fromCharCode(Math.floor(x / 80) + 95)}${10 - Math.floor(y / 80)}`;
+    this.calcX = calcX.bind(this);
+    this.calcY = calcY.bind(this);
+    this.calcSquare = calcSquare.bind(this);
+    this.possibleMoves = possibleMoves.bind(this);
 
     this.makeMove = () => {
-      const possibleMoves = this.state.chess.moves();
-      this.state.chess.move(possibleMoves[Math.floor(Math.random() * possibleMoves.length)]);
+      const availableMoves = this.state.chess.moves();
+      this.state.chess.move(availableMoves[Math.floor(Math.random() * availableMoves.length)]);
       this.setState(this.state.chess);
       this.props.onMove(this.state.chess);
     };
@@ -21,43 +23,26 @@ class Chessboard extends Component {
       const square = this.calcSquare(e.clientX, e.clientY);
 
       const moves = this.state.chess.moves({ square });
-      moves.forEach((possibleMove) => {
-        let move = possibleMove;
-        if (move.length === 3)
-          move = move.slice(1);
-        if (move.length === 4)
-          move = move.slice(2);
-
-        const moveElem = document.getElementById(move);
-        moveElem.classList.add('available');
-      });
-      this.setState({ from: square, moves });
+      console.log(moves);
+      this.possibleMoves(moves, 'add');
+      this.setState({ moves });
     };
 
     this.handleStop = (e) => {
       const square = this.calcSquare(e.x, e.y);
-
-      this.state.moves.forEach((possibleMove) => {
-        let move = possibleMove;
-
-        if (move.length === 3) move = move.slice(1);
-        if (move.length === 4) move = move.slice(2);
-
-        const moveElem = document.getElementById(move);
-        moveElem.classList.remove('available');
-      });
+      this.possibleMoves(this.state.moves, 'remove');
 
       let move = null;
-      this.state.moves
-        .forEach((possibleMove) => {
-          if (possibleMove.includes(square)) move = possibleMove;
-        });
+      this.state.moves.forEach((possibleMove) => {
+        if (possibleMove.includes(square))
+          move = possibleMove;
+      });
 
       if (move) {
         this.state.chess.move(move);
         this.setState(this.state.chess);
         this.props.onMove(this.state.chess);
-        this.makeMove();
+        setTimeout(this.makeMove, 500);
       }
     };
 
@@ -72,7 +57,6 @@ class Chessboard extends Component {
       .replace(/\./g, 'a')
       .replace(/abcdefgh/, '')
       .split('');
-    console.log(this.state.chess.ascii());
     return (
       <div className="chessboard">
         <svg width="640" height="640" viewBox="0 0 100 100">
