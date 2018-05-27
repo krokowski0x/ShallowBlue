@@ -61,7 +61,11 @@ class App extends Component {
             <div className="options">
               {options.map((option) => {
                 return (
-                  <label key={option.name} htmlFor={option.name} className={option.class}>{option.name}<br />
+                  <label
+                    key={option.name}
+                    htmlFor={option.name}
+                    className={option.class}
+                  >{option.name}<br />
                     <input
                       type="radio"
                       name={option.name}
@@ -81,7 +85,7 @@ class App extends Component {
         <h1>ShallowBlue.js</h1>
         <div className="rows">{helperArray.map(i => <p key={i}>{9 - i}</p>)}</div>
         <Chessboard chess={this.state.chess} onMove={chess => this.setState({ chess })} difficulty={parseInt(this.state.difficulty, 10)} />
-        <MovesHistory chess={this.state.chess} />
+        <MovesHistory chess={this.state.chess} onUndo={chess => this.setState({ chess })} />
         <div className="cols">
           {helperArray.map(i => <p key={i}>{String.fromCharCode(i + 96)}</p>)}
         </div>

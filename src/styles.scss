@@ -4,7 +4,7 @@ $available-field: rgb(135,206,250);
 $easy-color: #58ef6f;
 $moderate-color: #F18F01;
 $hard-color: #FB3640;
-$bg-color: #24292e;
+$bg-color: lighten(#24292e, 5%);
 $warning-color: darken(red, 20%);
 
 $square-size: 80px;
@@ -16,7 +16,7 @@ $square-size: 80px;
 }
 
 .Modal {
-  font-weight: bold;
+  font-weight: bolder;
   position: absolute;
   top: $square-size*2;
   left: $square-size*2;
@@ -83,7 +83,7 @@ $square-size: 80px;
    left: 0;
    right: 0;
    bottom: 0;
-   background-color: grey;
+   background-color: lighten($bg-color, 20%);
    opacity: 0.95;
  }
 
@@ -164,10 +164,48 @@ p {
   padding: 10px;
   overflow: scroll;
   h2 {
+    position: relative;
+    top: 0;
     font-size: 2em;
     text-align: center;
     padding: 0;
     margin: 5%;
+  }
+  .infobox {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    span {
+      text-align: center;
+      font-weight: bolder;
+      vertical-align: middle;
+    }
+    .turn {
+      margin: 0 auto;
+      height: 25px;
+      width: 25px;
+      border-radius: 50%;
+    }
+    .b {
+      background-color: black;
+    }
+    .w {
+      background-color: white;
+    }
+    .check {
+      text-align: center;
+    }
+    .yes {
+      color: darken($easy-color, 30%);
+      font-size: 1.2em;
+    }
+    .no {
+      text-decoration: line-through;
+    }
+    .undo {
+      cursor: pointer;
+      font-size: 25px;
+    }
   }
   ul {
     list-style-type: none;
