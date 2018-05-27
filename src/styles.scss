@@ -13,6 +13,34 @@ $square-size: 80px;
   font-family: sans-serif;
 }
 
+.Modal {
+   position: absolute;
+   top: $square-size*2;
+   left: $square-size*2;
+   right: $square-size*2;
+   bottom: $square-size*2;
+   border-radius: 20px;
+   background-color: $bg-color;
+ }
+
+ .Overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: grey;
+ }
+
+ .fieldgroup{
+   display: grid;
+   grid-template-columns: repeat(5, 1fr);
+ }
+ label {
+  float: left;
+  padding: 0 1em;
+  text-align: center;
+}
 .App {
   margin: 5%;
   display: grid;
@@ -88,15 +116,19 @@ p {
   border-radius: 10px;
   height: 616px;
   padding: 10px;
-  overflow: hidden;
+  overflow: scroll;
   h2 {
     font-size: 2em;
     text-align: center;
+    padding: 0;
+    margin: 5%;
   }
   ul {
     list-style-type: none;
     padding: 0;
     li {
+      border: 2px solid white;
+      border-radius: 10px;
       display: grid;
       grid-column: repeat(3, 1fr);
       padding: 5px;
@@ -123,4 +155,38 @@ p {
       }
     }
   }
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  background: #666666;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
