@@ -1,9 +1,11 @@
-$white-field: #FFF;
-$black-field: #000;
+$white-field: lighten(#FFF, 40%);
+$black-field: lighten(#000, 40%);
 $available-field: rgb(135,206,250);
-
+$easy-color: #58ef6f;
+$moderate-color: #F18F01;
+$hard-color: #FB3640;
 $bg-color: #24292e;
-$warning-color: red;
+$warning-color: darken(red, 20%);
 
 $square-size: 80px;
 
@@ -14,14 +16,66 @@ $square-size: 80px;
 }
 
 .Modal {
-   position: absolute;
-   top: $square-size*2;
-   left: $square-size*2;
-   right: $square-size*2;
-   bottom: $square-size*2;
-   border-radius: 20px;
-   background-color: $bg-color;
- }
+  font-weight: bold;
+  position: absolute;
+  top: $square-size*2;
+  left: $square-size*2;
+  right: $square-size*2;
+  bottom: $square-size*2;
+  border-radius: 20px;
+  background-color: $bg-color;
+  h1, h2 {
+    text-align: center;
+  }
+  button {
+    display: block;
+    margin: 30px auto;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    background: transparent;
+    border: 3px solid darken($available-field, 40%);
+  }
+  button:hover {
+    background-color: darken($available-field, 40%);
+    color: white;
+  }
+  .options {
+    margin: 2%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 2%;
+  }
+  label {
+    padding-top: 15%;
+    font-size: 25px;
+    height: 300px;
+    border: 3px solid white;
+    border-radius: 10px;
+    text-align: center;
+    p {
+      margin: 0 auto;
+      width: 90%;
+      height: 80%;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+    label.easy, p.easy {
+      border: 3px solid $easy-color;
+      background-color: $easy-color;
+    }
+    label.moderate, p.moderate {
+      border: 3px solid $moderate-color;
+      background-color: $moderate-color;
+    }
+    label.hard, p.hard {
+      border: 3px solid $hard-color;
+      background-color: $hard-color;
+    }
+}
 
  .Overlay {
    position: fixed;
@@ -30,17 +84,9 @@ $square-size: 80px;
    right: 0;
    bottom: 0;
    background-color: grey;
+   opacity: 0.95;
  }
 
- .fieldgroup{
-   display: grid;
-   grid-template-columns: repeat(5, 1fr);
- }
- label {
-  float: left;
-  padding: 0 1em;
-  text-align: center;
-}
 .App {
   margin: 5%;
   display: grid;
@@ -86,13 +132,13 @@ p {
   grid-template-columns: repeat(8, $square-size);
   grid-template-rows: repeat(8, $square-size);
   .black {
-    fill: lighten($black-field, 40%);
+    fill: $black-field;
   }
   .black.available {
     fill: darken($available-field, 30%);
   }
   .white {
-    fill: lighten($white-field, 40%);
+    fill: $white-field;
   }
   .white.available {
     fill: $available-field;

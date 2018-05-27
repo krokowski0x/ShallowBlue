@@ -3,6 +3,7 @@ import Draggable from 'react-draggable';
 
 import Square from './Square';
 import { calcX, calcY, calcSquare, possibleMoves } from '../utils/positioning';
+import { calcBestMove, positionCount } from '../utils/minimax';
 
 class Chessboard extends Component {
   constructor(props) {
@@ -13,8 +14,15 @@ class Chessboard extends Component {
     this.possibleMoves = possibleMoves.bind(this);
 
     this.makeMove = () => {
-      const availableMoves = this.state.chess.moves();
-      this.state.chess.move(availableMoves[Math.floor(Math.random() * availableMoves.length)]);
+      if (this.state.chess.game_over()) alert('Game over');
+      if (this.props.difficulty === 1) {
+        const availableMoves = this.state.chess.moves();
+        this.state.chess.move(availableMoves[Math.floor(Math.random() * availableMoves.length)]);
+      }
+      if ([2, 3, 4].includes(this.props.difficulty)) {
+        this.state.chess.move(calcBestMove(this.state.chess, this.props.difficulty));
+        console.log(positionCount);
+      }
       this.setState(this.state.chess);
       this.props.onMove(this.state.chess);
     };
@@ -42,21 +50,22 @@ class Chessboard extends Component {
         this.state.chess.move(move);
         this.setState(this.state.chess);
         this.props.onMove(this.state.chess);
-        setTimeout(this.makeMove, 500);
+        setTimeout(this.makeMove, 0);
       }
     };
 
     this.state = {
-      chess: props.chess,
+      chess: this.props.chess,
     };
   }
 
   render() {
-    let boardAscii = this.state.chess.ascii()
+    const boardAscii = this.state.chess.ascii()
       .replace(/[\d+\-|\s]/gi, '')
       .replace(/\./g, 'a')
       .replace(/abcdefgh/, '')
       .split('');
+
     return (
       <div className="chessboard">
         <svg width="640" height="640" viewBox="0 0 100 100">
