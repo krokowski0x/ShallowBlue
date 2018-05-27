@@ -1,14 +1,11 @@
 import React from 'react';
-
-const calcX = index => (index % 8) * 12.5;
-const calcY = index => Math.floor(index / 8) * 12.5;
+import { calcX, calcY } from '../utils/positioning';
 
 const Square = (props) => {
   const { index } = props;
 
   return (
     <rect
-      onClick={() => console.log(index)}
       id={`${String.fromCharCode(Math.floor(index % 8) + 97)}${8 - Math.floor(index / 8)}`}
       x={calcX(index)}
       y={calcY(index)}
