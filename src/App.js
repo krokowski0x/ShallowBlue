@@ -43,6 +43,6 @@ export default class App extends Component {
           </div>
         </div>
       );
-    return <GameOverModal />
+    return <GameOverModal chess={chess} />
   }
 }
