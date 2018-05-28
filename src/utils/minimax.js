@@ -50,4 +50,7 @@ const minimax = (depth, game, alpha, beta, isMaximisingPlayer) => {
   return bestMove;
 };
 
-export const calcBestMove = (game, depth) => minimaxRoot(depth, game, true);
+export const calcBestMove = (game, depth) => {
+  positionCount = 0;
+  return minimaxRoot(depth, game, true);
+};

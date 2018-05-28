@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Chess from 'chess.js';
 
-import WelcomeModal from './components/WelcomeModal';
-import GameOverModal from './components/GameOverModal';
-import Chessboard from './components/Chessboard';
-import MovesHistory from './components/MovesHistory';
+import WelcomeModal from './WelcomeModal';
+import GameOverModal from './GameOverModal';
+import Chessboard from './Chessboard';
+import MovesHistory from './MovesHistory';
 
 const chess = new Chess();
 const helperArray = Array.from({ length: 8 }, (v, k) => k + 1);

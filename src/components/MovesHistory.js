@@ -29,7 +29,6 @@ class MovesHistory extends Component {
             <span className="check no">nope</span>}
           <span className={`turn ${this.state.chess.turn()}`} />
           <span className="undo" onClick={this.handleUndo}>&#8630;</span>
-          {this.state.chess.in_check() ? <span>CHECK!</span> : <span />}
         </div>
         <hr />
         <ul>

@@ -14,7 +14,6 @@ class Chessboard extends Component {
     this.possibleMoves = possibleMoves.bind(this);
 
     this.makeMove = () => {
-      if (this.state.chess.game_over()) alert('Game over');
       if (this.props.difficulty === 1) {
         const availableMoves = this.state.chess.moves();
         this.state.chess.move(availableMoves[Math.floor(Math.random() * availableMoves.length)]);
@@ -29,9 +28,8 @@ class Chessboard extends Component {
 
     this.handleStart = (e) => {
       const square = this.calcSquare(e.clientX, e.clientY);
-
       const moves = this.state.chess.moves({ square });
-      console.log(moves);
+
       this.possibleMoves(moves, 'add');
       this.setState({ moves });
     };
