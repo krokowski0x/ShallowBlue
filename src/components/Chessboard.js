@@ -3,7 +3,7 @@ import Draggable from 'react-draggable';
 
 import Square from './Square';
 import { calcX, calcY, calcSquare, possibleMoves } from '../utils/positioning';
-import { calcBestMove, positionCount } from '../utils/minimax';
+import { calcBestMove } from '../utils/minimax';
 
 class Chessboard extends Component {
   constructor(props) {
@@ -18,10 +18,9 @@ class Chessboard extends Component {
         const availableMoves = this.state.chess.moves();
         this.state.chess.move(availableMoves[Math.floor(Math.random() * availableMoves.length)]);
       }
-      if ([2, 3, 4].includes(this.props.difficulty)) {
+      if ([2, 3, 4].includes(this.props.difficulty))
         this.state.chess.move(calcBestMove(this.state.chess, this.props.difficulty));
-        console.log(positionCount);
-      }
+
       this.setState(this.state.chess);
       this.props.onMove(this.state.chess);
     };
@@ -64,6 +63,8 @@ class Chessboard extends Component {
       .replace(/abcdefgh/, '')
       .split('');
 
+    /* eslint react/no-array-index-key: "off" */
+    /* eslint no-param-reassign: "off" */
     return (
       <div className="chessboard">
         <svg width="640" height="640" viewBox="0 0 100 100">

@@ -4,6 +4,8 @@
     linebreak-style: ["error", "windows"],
     react/jsx-filename-extension: [1, { "extensions": [".js", ".jsx"] }],
     curly: ["error", "multi"],
-    no-multi-spaces: "off"
+    no-multi-spaces: "off",
+    react/prop-types: "off",
+    no-nested-ternary: "off",
   }
 }

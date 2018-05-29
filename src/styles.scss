@@ -1,12 +1,14 @@
+// COLORS
 $white-field: lighten(#FFF, 40%);
 $black-field: lighten(#000, 40%);
 $available-field: rgb(135,206,250);
 $easy-color: #58ef6f;
 $moderate-color: #F18F01;
 $hard-color: #FB3640;
-$bg-color: lighten(#24292e, 5%);
-$warning-color: darken(red, 20%);
+$bg-color: lighten(#24292e, 2%);
+$warning-color: darken(red, 10%);
 
+// SIZES
 $square-size: 80px;
 
 * {
@@ -15,6 +17,7 @@ $square-size: 80px;
   font-family: sans-serif;
 }
 
+// WELCOME AND EXIT MODALS
 .Modal {
   font-weight: bolder;
   position: absolute;
@@ -87,19 +90,24 @@ $square-size: 80px;
    opacity: 0.95;
  }
 
+// MAIN APP COMPONENT
 .App {
-  margin: 5%;
+  margin: 0 10%;
   display: grid;
   grid-template-columns: 5% 50% 41%;
   grid-template-rows: 5% 86% 5%;
   grid-gap: 2%;
   h1 {
+    font-size: 3em;
+    padding: 0;
+    margin: 2%;
     text-align: center;
-    grid-column: 2;
+    grid-column: 1 / 4;
     grid-row: 1;
   }
 }
 
+// ROWS AND COLUMNS NAMING
 p {
   width: $square-size;
   height: $square-size;
@@ -123,6 +131,7 @@ p {
   }
 }
 
+// CHESSBOARD AND PIECES
 .chessboard {
   width: $square-size * 8;
   height:$square-size * 8;
@@ -153,14 +162,15 @@ p {
   }
 }
 
+// MOVES HISTORY
 .moves {
   width: 50%;
-  margin: 0 auto;
+  margin: 0 ;
   grid-column: 3;
   grid-row: 2 / 4;
   border: 2px solid white;
   border-radius: 10px;
-  height: 616px;
+  height: $square-size*8 - 24px;
   padding: 10px;
   overflow: scroll;
   h2 {
@@ -240,6 +250,8 @@ p {
     }
   }
 }
+
+// CUSTOM SCROLLBAR
 
 ::-webkit-scrollbar {
   width: 2px;
