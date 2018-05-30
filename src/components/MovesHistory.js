@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import HistoryRecord from './HistoryRecord';
 
 class MovesHistory extends Component {
   constructor(props) {
@@ -23,27 +24,20 @@ class MovesHistory extends Component {
         <h2>Moves:</h2>
         <hr />
         <div className="infobox">
-          <span>Check</span><span>Turn</span><span>Undo</span>
+          <span>Turn</span><span>Check</span><span>Undo</span>
+          <span className={`turn ${this.state.chess.turn()}`} />
           {this.state.chess.in_check() ?
             <span className="check yes">CHECK!</span> :
             <span className="check no">nope</span>}
-          <span className={`turn ${this.state.chess.turn()}`} />
           <span className="undo" onClick={this.handleUndo}>&#8630;</span>
         </div>
         <hr />
         <ul>
           {history.map(record => (
-            <li key={history.san}>
-              <img
-                alt="Chess Piece"
-                draggable="false"
-                src={`src/pieces/${record.piece}${record.color}.svg`}
-              />
-              <span className="moveRecord">
-                {record.from} &#10230; {record.to}
-              </span>
-              {record.captured ? <span className="captureRecord">Capture!</span> : <span />}
-            </li>
+            <HistoryRecord
+              key={history.san}
+              record={record}
+            />
           ))}
         </ul>
       </div>
