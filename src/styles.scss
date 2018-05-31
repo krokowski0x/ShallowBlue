@@ -235,6 +235,7 @@ p {
         display: block;
       }
       span {
+        display: block;
         line-height: 40px;
         vertical-align: middle;
         text-align: center;
@@ -249,6 +250,18 @@ p {
       }
       button {
         grid-column: 4;
+        margin: auto 0;
+        height: 70%;
+        display: block;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        background: transparent;
+        border: 3px solid darken(white, 40%);
+      }
+      button:hover {
+        background-color: darken(white, 40%);
+        color: white;
       }
       .AIinfo {
         line-height: 40px;

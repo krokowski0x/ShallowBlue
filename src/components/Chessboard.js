@@ -3,39 +3,39 @@ import Draggable from 'react-draggable';
 
 import Square from './Square';
 import { calcX, calcY, calcSquare, possibleMoves } from '../utils/positioning';
-import { calcBestMove } from '../utils/minimax';
+import { calcBestMove, positionCount } from '../utils/minimax';
 
 class Chessboard extends Component {
   constructor(props) {
     super(props);
-    this.calcX = calcX.bind(this);
-    this.calcY = calcY.bind(this);
-    this.calcSquare = calcSquare.bind(this);
-    this.possibleMoves = possibleMoves.bind(this);
 
     this.makeMove = () => {
       if (this.props.difficulty === 1) {
         const availableMoves = this.state.chess.moves();
         this.state.chess.move(availableMoves[Math.floor(Math.random() * availableMoves.length)]);
       }
-      if ([2, 3, 4].includes(this.props.difficulty))
+      if ([2, 3, 4].includes(this.props.difficulty)) {
+        const start = performance.now();
         this.state.chess.move(calcBestMove(this.state.chess, this.props.difficulty));
+        const end = performance.now();
+        const time = end - start;
+      }
 
       this.setState(this.state.chess);
       this.props.onMove(this.state.chess);
     };
 
     this.handleStart = (e) => {
-      const square = this.calcSquare(e.clientX, e.clientY);
+      const square = calcSquare(e.clientX, e.clientY);
       const moves = this.state.chess.moves({ square });
 
-      this.possibleMoves(moves, 'add');
+      possibleMoves(moves, 'add');
       this.setState({ moves });
     };
 
     this.handleStop = (e) => {
-      const square = this.calcSquare(e.x, e.y);
-      this.possibleMoves(this.state.moves, 'remove');
+      const square = calcSquare(e.x, e.y);
+      possibleMoves(this.state.moves, 'remove');
 
       let move = null;
       this.state.moves.forEach((possibleMove) => {

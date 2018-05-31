@@ -6,12 +6,14 @@ class HistoryRecord extends Component {
     super(props);
     this.state = {
       isOpened: false,
+      time: 0,
+      positions: 0,
     };
   }
 
   render() {
     const { record, key } = this.props;
-    const { isOpened } = this.state;
+    const { isOpened, time, positions } = this.state;
 
     return (
       <li key={key}>
@@ -30,7 +32,7 @@ class HistoryRecord extends Component {
           > &#9661;
           </button> : <span />}
         <Collapse className="AIinfo" fixedHeight={40} isOpened={isOpened}>
-            Fcmwioefjnwoeifjnweofiujbweofiwjfbouwefhboeufjh
+            Move took {time}s and evaluated {positions} possible positions.
         </Collapse>
       </li>
     );
