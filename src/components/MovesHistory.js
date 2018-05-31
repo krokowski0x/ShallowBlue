@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import HistoryRecord from './HistoryRecord';
 
-class MovesHistory extends Component {
+export default class MovesHistory extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,5 +44,3 @@ class MovesHistory extends Component {
     );
   }
 }
-
-export default MovesHistory;

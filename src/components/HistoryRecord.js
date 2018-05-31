@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Collapse } from 'react-collapse';
 
-class HistoryRecord extends Component {
+export default class HistoryRecord extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,5 +38,3 @@ class HistoryRecord extends Component {
     );
   }
 }
-
-export default HistoryRecord;

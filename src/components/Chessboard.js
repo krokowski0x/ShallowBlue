@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 
 import Square from './Square';
-import { calcX, calcY, calcSquare, possibleMoves } from '../utils/positioning';
+import { calcSquare, possibleMoves } from '../utils/positioning';
 import { calcBestMove, positionCount } from '../utils/minimax';
 
-class Chessboard extends Component {
+export default class Chessboard extends Component {
   constructor(props) {
     super(props);
 
@@ -19,6 +19,7 @@ class Chessboard extends Component {
         this.state.chess.move(calcBestMove(this.state.chess, this.props.difficulty));
         const end = performance.now();
         const time = end - start;
+        console.log(time);
       }
 
       this.setState(this.state.chess);
@@ -99,5 +100,3 @@ class Chessboard extends Component {
     );
   }
 }
-
-export default Chessboard;

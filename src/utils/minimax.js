@@ -3,7 +3,6 @@ import { evaluateBoard } from './boardEvaluation';
 export let positionCount = 0;
 
 const minimaxRoot = (depth, game, isMaximisingPlayer) => {
-
   const newGameMoves = game.moves();
   let bestMove = -9999;
   let bestMoveFound;

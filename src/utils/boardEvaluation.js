@@ -1,8 +1,8 @@
-export const evaluateBoard = (board) => {
+const evaluateBoard = (board) => {
   let totalEvaluation = 0;
   for (let i = 0; i < 8; i++) {
     for (let j = 0; j < 8; j++) {
-      totalEvaluation += getPieceValue(board[i][j], i ,j);
+      totalEvaluation += getPieceValue(board[i][j], i, j);
     }
   }
   return totalEvaluation;
@@ -12,11 +12,11 @@ const getPieceValue = (piece, x, y) => {
   if (piece === null)
     return 0;
 
-  const absoluteValue = getAbsoluteValue(piece, piece.color === 'w', x ,y);
+  const absoluteValue = getAbsoluteValue(piece, piece.color === 'w', x, y);
   return piece.color === 'w' ? absoluteValue : -absoluteValue;
 };
 
-const getAbsoluteValue = (piece, isWhite, x ,y) => {
+const getAbsoluteValue = (piece, isWhite, x, y) => {
   switch (piece.type) {
     case 'p':
       return 10 + (isWhite ? pawnEvalWhite[y][x] : pawnEvalBlack[y][x]);
@@ -31,7 +31,7 @@ const getAbsoluteValue = (piece, isWhite, x ,y) => {
     case 'k':
       return 900 + (isWhite ? kingEvalWhite[y][x] : kingEvalBlack[y][x]);
     default:
-      `Unknown piece type: ${piece.type}`;
+      return `Unknown piece type: ${piece.type}`;
   }
 };
 
@@ -45,7 +45,7 @@ const pawnEvalWhite = [
   [0.0,  0.0,  0.0,  2.0,  2.0,  0.0,  0.0,  0.0],
   [0.5, -0.5, -1.0,  0.0,  0.0, -1.0, -0.5,  0.5],
   [0.5,  1.0, 1.0,  -2.0, -2.0,  1.0,  1.0,  0.5],
-  [0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0]
+  [0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0],
 ];
 
 const pawnEvalBlack = reverseArray(pawnEvalWhite);
@@ -58,7 +58,7 @@ const knightEval = [
   [-3.0,  0.0,  1.5,  2.0,  2.0,  1.5,  0.0, -3.0],
   [-3.0,  0.5,  1.0,  1.5,  1.5,  1.0,  0.5, -3.0],
   [-4.0, -2.0,  0.0,  0.5,  0.5,  0.0, -2.0, -4.0],
-  [-5.0, -4.0, -3.0, -3.0, -3.0, -3.0, -4.0, -5.0]
+  [-5.0, -4.0, -3.0, -3.0, -3.0, -3.0, -4.0, -5.0],
 ];
 
 const bishopEvalWhite = [
@@ -69,7 +69,7 @@ const bishopEvalWhite = [
   [-1.0,  0.0,  1.0,  1.0,  1.0,  1.0,  0.0, -1.0],
   [-1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0, -1.0],
   [-1.0,  0.5,  0.0,  0.0,  0.0,  0.0,  0.5, -1.0],
-  [-2.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -2.0]
+  [-2.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -2.0],
 ];
 
 const bishopEvalBlack = reverseArray(bishopEvalWhite);
@@ -82,7 +82,7 @@ const rookEvalWhite = [
   [-0.5,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0, -0.5],
   [-0.5,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0, -0.5],
   [-0.5,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0, -0.5],
-  [0.0,   0.0, 0.0,  0.5,  0.5,  0.0,  0.0,  0.0]
+  [0.0,   0.0, 0.0,  0.5,  0.5,  0.0,  0.0,  0.0],
 ];
 
 const rookEvalBlack = reverseArray(rookEvalWhite);
@@ -95,7 +95,7 @@ const evalQueen = [
   [0.0,  0.0,  0.5,  0.5,  0.5,  0.5,  0.0, -0.5],
   [-1.0,  0.5,  0.5,  0.5,  0.5,  0.5,  0.0, -1.0],
   [-1.0,  0.0,  0.5,  0.0,  0.0,  0.0,  0.0, -1.0],
-  [-2.0, -1.0, -1.0, -0.5, -0.5, -1.0, -1.0, -2.0]
+  [-2.0, -1.0, -1.0, -0.5, -0.5, -1.0, -1.0, -2.0],
 ];
 
 const kingEvalWhite = [
@@ -105,8 +105,10 @@ const kingEvalWhite = [
   [-3.0, -4.0, -4.0, -5.0, -5.0, -4.0, -4.0, -3.0],
   [-2.0, -3.0, -3.0, -4.0, -4.0, -3.0, -3.0, -2.0],
   [-1.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -1.0],
-  [2.0,  2.0,  0.0,  0.0,  0.0,  0.0,  2.0,  2.0 ],
-  [2.0,  3.0,  1.0,  0.0,  0.0,  1.0,  3.0,  2.0 ]
+  [2.0,  2.0,  0.0,  0.0,  0.0,  0.0,  2.0,  2.0],
+  [2.0,  3.0,  1.0,  0.0,  0.0,  1.0,  3.0,  2.0],
 ];
 
 const kingEvalBlack = reverseArray(kingEvalWhite);
+
+export default evaluateBoard;

@@ -37,7 +37,7 @@ export default class WelcomeModal extends Component {
         contentLabel="Game Over Modal"
       >
         <h1>{`You've ${result} by a${outcome}!`}</h1>
-        <button onClick={e => location.reload()}>Try again</button>
+        <button onClick={() => location.reload()}>Try again</button>
       </Modal>
     );
   }

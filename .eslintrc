@@ -7,5 +7,6 @@
     no-multi-spaces: "off",
     react/prop-types: "off",
     no-nested-ternary: "off",
+    no-use-before-define: "off",
   }
 }
