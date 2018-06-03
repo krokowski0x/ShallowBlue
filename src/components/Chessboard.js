@@ -19,7 +19,6 @@ export default class Chessboard extends Component {
         this.state.chess.move(calcBestMove(this.state.chess, this.props.difficulty));
         const end = performance.now();
         const time = end - start;
-        console.log(time);
       }
 
       this.setState(this.state.chess);
