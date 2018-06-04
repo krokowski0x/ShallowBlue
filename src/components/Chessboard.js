@@ -91,7 +91,7 @@ export default class Chessboard extends Component {
                 id={piece === 'ab' ? index : piece}
                 alt="Chess Piece"
                 draggable="false"
-                src={`src/pieces/${piece}.svg`}
+                src={`src/pieces/${piece.toLowerCase()}.svg`}
               />
             </Draggable>);
         })}
