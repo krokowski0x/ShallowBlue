@@ -28,7 +28,9 @@ export default class App extends Component {
             onOptionChange={difficulty => this.setState({ difficulty })}
           />
           <h1>ShallowBlue.js</h1>
-          <div className="rows">{helperArray.map(i => <p key={i}>{9 - i}</p>)}</div>
+          <div className="rows">
+            {helperArray.map(i => <p key={i}>{9 - i}</p>)}
+          </div>
           <Chessboard
             chess={this.state.chess}
             onMove={chess => this.setState({ chess })}

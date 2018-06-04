@@ -26,7 +26,8 @@ export default class Chessboard extends Component {
     };
 
     this.handleStart = (e) => {
-      const square = calcSquare(e.clientX, e.clientY);
+      const chessboardTop = document.getElementById('a8').getBoundingClientRect();
+      const square = calcSquare(e.clientX - chessboardTop.x, e.clientY - chessboardTop.y);
       const moves = this.state.chess.moves({ square });
 
       possibleMoves(moves, 'add');
@@ -34,7 +35,8 @@ export default class Chessboard extends Component {
     };
 
     this.handleStop = (e) => {
-      const square = calcSquare(e.x, e.y);
+      const chessboardTop = document.getElementById('a8').getBoundingClientRect();
+      const square = calcSquare(e.x - chessboardTop.x, e.y - chessboardTop.y);
       possibleMoves(this.state.moves, 'remove');
 
       let move = null;
@@ -67,7 +69,7 @@ export default class Chessboard extends Component {
     /* eslint no-param-reassign: "off" */
     return (
       <div className="chessboard">
-        <svg width="640" height="640" viewBox="0 0 100 100">
+        <svg viewBox="0 0 100 100">
           {boardAscii.map((square, index) => <Square key={index} index={index} />)}
         </svg>
         {boardAscii.map((piece, index) => {
@@ -83,15 +85,13 @@ export default class Chessboard extends Component {
               disabled={piece === 'ab'}
               onStart={this.handleStart}
               onStop={this.handleStop}
-              grid={[80, 80]}
+              grid={[70, 70]}
             >
               <img
                 id={piece === 'ab' ? index : piece}
                 alt="Chess Piece"
                 draggable="false"
                 src={`src/pieces/${piece}.svg`}
-                height="80px"
-                width="80px"
               />
             </Draggable>);
         })}

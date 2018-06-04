@@ -9,7 +9,7 @@ $bg-color: lighten(#24292e, 2%);
 $warning-color: darken(red, 10%);
 
 // SIZES
-$square-size: 80px;
+$square-size: 70px;
 
 * {
   background-color: $bg-color;
@@ -94,11 +94,11 @@ $square-size: 80px;
 .App {
   margin: 0 10%;
   display: grid;
-  grid-template-columns: 5% 50% 41%;
+  grid-template-columns: $square-size $square-size*8 1fr;
   grid-template-rows: 5% 86% 5%;
   grid-gap: 2%;
   h1 {
-    font-size: 3em;
+    font-size: 2.5em;
     padding: 0;
     margin: 2%;
     text-align: center;
@@ -154,8 +154,12 @@ p {
   }
   svg {
     position: absolute;
+    width: $square-size * 8;
+    height: $square-size * 8;
   }
   img {
+    width: $square-size;
+    height: $square-size;
     background-color: transparent;
     position: relative;
     cursor: move;
@@ -164,8 +168,8 @@ p {
 
 // MOVES HISTORY
 .moves {
-  width: 50%;
-  margin: 0 ;
+  width: 55%;
+  margin: 0 auto;
   grid-column: 3;
   grid-row: 2 / 4;
   border: 2px solid white;
@@ -225,7 +229,8 @@ p {
       border-radius: 10px;
       display: grid;
       grid-column: repeat(4, 1fr);
-      padding: 5px;
+      grid-gap: 5%;
+      padding: 5px 10px;
       margin: 5px;
       font-weight: bold;
       img {
