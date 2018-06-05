@@ -21,7 +21,7 @@ $square-size: 70px;
 .Modal {
   font-weight: bolder;
   position: absolute;
-  top: $square-size*2;
+  top: $square-size;
   left: $square-size*2;
   right: $square-size*2;
   bottom: $square-size*2;
@@ -168,7 +168,7 @@ p {
 
 // MOVES HISTORY
 .moves {
-  width: 55%;
+  width: 70%;
   margin: 0 auto;
   grid-column: 3;
   grid-row: 2 / 4;
@@ -228,9 +228,8 @@ p {
       border: 2px solid white;
       border-radius: 10px;
       display: grid;
-      grid-column: repeat(4, 1fr);
-      grid-gap: 5%;
-      padding: 5px 10px;
+      grid-column: 1fr 1fr 1fr 1fr;
+      padding: 5px;
       margin: 5px;
       font-weight: bold;
       img {
@@ -255,21 +254,22 @@ p {
       }
       button {
         grid-column: 4;
-        margin: auto 0;
-        height: 70%;
-        display: block;
+        margin: 0;
+        padding: 0;
+        height: 40px;
+        vertical-align: middle;
         font-weight: bold;
         border-radius: 5px;
         cursor: pointer;
         background: transparent;
-        border: 3px solid darken(white, 40%);
+        border: 2px solid darken(white, 40%);
       }
       button:hover {
         background-color: darken(white, 40%);
         color: white;
       }
       .AIinfo {
-        line-height: 40px;
+        grid-column: 1 / 5;
       }
     }
   }

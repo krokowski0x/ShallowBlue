@@ -6,14 +6,13 @@ export default class HistoryRecord extends Component {
     super(props);
     this.state = {
       isOpened: false,
-      time: 0,
-      positions: 0,
+      info: props.info,
     };
   }
 
   render() {
     const { record, key } = this.props;
-    const { isOpened, time, positions } = this.state;
+    const { isOpened, info } = this.state;
 
     return (
       <li key={key}>
@@ -31,8 +30,8 @@ export default class HistoryRecord extends Component {
             onClick={() => this.setState({ isOpened: !isOpened })}
           > &#9661;
           </button> : <span />}
-        <Collapse className="AIinfo" fixedHeight={40} isOpened={isOpened}>
-            Move took {time}s and evaluated {positions} possible positions.
+        <Collapse className="AIinfo" isOpened={isOpened}>
+          <span>{`Move took ${info.time} s and evaluated ${info.positions} possible positions.`}</span>
         </Collapse>
       </li>
     );

@@ -18,11 +18,12 @@ export default class Chessboard extends Component {
         const start = performance.now();
         this.state.chess.move(calcBestMove(this.state.chess, this.props.difficulty));
         const end = performance.now();
-        const time = end - start;
+        const time = Math.floor(end - start) / 1000;
+        this.setState({ info: { time, positions: positionCount } });
       }
 
       this.setState(this.state.chess);
-      this.props.onMove(this.state.chess);
+      this.props.onMove(this.state.chess, this.state.info);
     };
 
     this.handleStart = (e) => {
@@ -55,6 +56,7 @@ export default class Chessboard extends Component {
 
     this.state = {
       chess: this.props.chess,
+      info: { time: 0, positions: 0 },
     };
   }
 
@@ -79,21 +81,21 @@ export default class Chessboard extends Component {
             piece += 'w';
 
           return (
-            <Draggable
-              key={piece + index}
-              // bounds="parent"
-              disabled={piece === 'ab'}
-              onStart={this.handleStart}
-              onStop={this.handleStop}
-              grid={[70, 70]}
-            >
-              <img
-                id={piece === 'ab' ? index : piece}
-                alt="Chess Piece"
-                draggable="false"
-                src={`src/pieces/${piece.toLowerCase()}.svg`}
-              />
-            </Draggable>);
+              <Draggable
+                key={piece + index}
+                // bounds="parent"
+                disabled={piece === 'ab'}
+                onStart={this.handleStart}
+                onStop={this.handleStop}
+                grid={[70, 70]}
+              >
+                <img
+                  id={piece === 'ab' ? index : piece}
+                  alt="Chess Piece"
+                  draggable="false"
+                  src={`src/pieces/${piece.toLowerCase()}.svg`}
+                />
+              </Draggable>);
         })}
       </div>
     );

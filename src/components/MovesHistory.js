@@ -19,6 +19,7 @@ export default class MovesHistory extends Component {
 
   render() {
     const history = this.state.chess.history({ verbose: true });
+
     return (
       <div className="moves">
         <h2>Moves:</h2>
@@ -35,6 +36,7 @@ export default class MovesHistory extends Component {
         <ul>
           {history.map(record => (
             <HistoryRecord
+              info={this.props.info ? this.props.info : { time: 0, positions: 0 }}
               key={history.san}
               record={record}
             />

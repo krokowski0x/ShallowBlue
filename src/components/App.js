@@ -16,6 +16,7 @@ export default class App extends Component {
     this.state = {
       chess,
       difficulty: '3',
+      info: { time: 0, positions: 0 },
     };
   }
 
@@ -33,11 +34,12 @@ export default class App extends Component {
           </div>
           <Chessboard
             chess={this.state.chess}
-            onMove={chess => this.setState({ chess })}
+            onMove={(chess, info) => this.setState({ chess, info })}
             difficulty={parseInt(this.state.difficulty, 10)}
           />
           <MovesHistory
             chess={this.state.chess}
+            info={this.state.info}
             onUndo={chess => this.setState({ chess })}
           />
           <div className="cols">
