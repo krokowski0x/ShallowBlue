@@ -20,24 +20,30 @@ export default class WelcomeModal extends Component {
   }
 
   render() {
-    const { chess } = this.state;
+    const { chess, showModal } = this.state;
+
+    // If the last move was done by black, you lost, else you won
     const result = chess.history({ verbose: true })[chess.history.length - 1].color === 'b' ? 'LOST' : 'WON';
     const outcome =
       chess.in_checkmate() ? ' CHECKMATE' :
-        chess.in_draw() ? ' DRAW' :
-          chess.in_stalemate() ? ' STALEMATE' :
-            chess.insufficient_material() ? 'n INSUFFICIENT MATERIAL' : '';
+      chess.in_draw() ? ' DRAW' :
+      chess.in_stalemate() ? ' STALEMATE' :
+      chess.insufficient_material() ? 'n INSUFFICIENT MATERIAL' : '';
 
     return (
       <Modal
-        isOpen={this.state.showModal}
+        isOpen={showModal}
         className="Modal"
         overlayClassName="Overlay"
         onRequestClose={this.closeModal}
         contentLabel="Game Over Modal"
       >
         <h1>{`You've ${result} by a${outcome}!`}</h1>
-        <button onClick={() => location.reload()}>Try again</button>
+        <button
+          onClick={() => location.reload()}
+        >
+        Try again
+        </button>
       </Modal>
     );
   }

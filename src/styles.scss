@@ -228,7 +228,7 @@ p {
       border: 2px solid white;
       border-radius: 10px;
       display: grid;
-      grid-column: 1fr 1fr 1fr 1fr;
+      grid-column: repeat(4, 1fr);
       padding: 5px;
       margin: 5px;
       font-weight: bold;
