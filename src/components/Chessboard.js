@@ -51,6 +51,9 @@ export default class Chessboard extends Component {
         this.setState(this.state.chess);
         this.props.onMove(this.state.chess);
         setTimeout(this.makeMove, 0);
+      } else {
+        this.state.chess.move(this.state.moves[0]);
+        this.setState(this.state.chess);
       }
     };
 
