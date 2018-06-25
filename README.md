@@ -1,6 +1,6 @@
 # ShallowBlue.js
 
-Humble attempt to recreate IBM's Deep Blue with minimax, alfa-beta pruning and **soon** reinforcement learning.
+Poor, but better looking version of IBM's Deep Blue with minimax, alfa-beta pruning and **soon** reinforcement learning.
 **Live version** - https://shallow-blue-js.herokuapp.com/
 
 ## Brief description

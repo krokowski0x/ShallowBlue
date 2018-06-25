@@ -10,12 +10,17 @@ export default class Chessboard extends Component {
     super(props);
 
     this.makeMove = () => {
+      // If it's at random difficulty
       if (this.props.difficulty === 1) {
         const availableMoves = this.state.chess.moves();
+        // Pick a random move from available
         this.state.chess.move(availableMoves[Math.floor(Math.random() * availableMoves.length)]);
       }
+      // If it uses AI
       if ([2, 3, 4].includes(this.props.difficulty)) {
+        // Check the performance
         const start = performance.now();
+        // Calculate best move
         this.state.chess.move(calcBestMove(this.state.chess, this.props.difficulty));
         const end = performance.now();
         const time = Math.floor(end - start) / 1000;
