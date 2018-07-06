@@ -26,6 +26,7 @@ export default class App extends Component {
   }
 
   render() {
+    /* eslint no-shadow: "off" */
     const { chess, difficulty, info } = this.state;
     // While game still isn't over
     if (!chess.game_over())

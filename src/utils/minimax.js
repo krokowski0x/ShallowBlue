@@ -1,5 +1,5 @@
 import evaluateBoard from './boardEvaluation';
-
+/* eslint import/no-mutable-exports: "off" */
 export let positionCount = 0;
 
 const minimaxRoot = (depth, game, isMaximisingPlayer) => {

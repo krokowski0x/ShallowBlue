@@ -1,10 +1,9 @@
 const evaluateBoard = (board) => {
   let totalEvaluation = 0;
-  for (let i = 0; i < 8; i++) {
-    for (let j = 0; j < 8; j++) {
+  for (let i = 0; i < 8; i++)
+    for (let j = 0; j < 8; j++)
       totalEvaluation += getPieceValue(board[i][j], i, j);
-    }
-  }
+
   return totalEvaluation;
 };
 

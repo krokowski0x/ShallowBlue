@@ -8,7 +8,7 @@ import { calcBestMove, positionCount } from '../utils/minimax';
 export default class Chessboard extends Component {
   constructor(props) {
     super(props);
-
+    /* eslint no-undef: "off" */
     this.makeMove = () => {
       // If it's at random difficulty
       if (this.props.difficulty === 1) {

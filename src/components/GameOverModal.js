@@ -24,6 +24,7 @@ export default class WelcomeModal extends Component {
 
     // If the last move was done by black, you lost, else you won
     const result = chess.history({ verbose: true })[chess.history.length - 1].color === 'b' ? 'LOST' : 'WON';
+    /* eslint indent: "off" */
     const outcome =
       chess.in_checkmate() ? ' CHECKMATE' :
       chess.in_draw() ? ' DRAW' :
