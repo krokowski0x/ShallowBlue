@@ -8,6 +8,8 @@ Poor, but better looking version of IBM's Deep Blue with minimax, alfa-beta prun
 App lets you play chess with simple AI of various difficulty levels. Better AI means going deeper down the minimax tree.
 Chess logic is implemented via Chess.js library and here I focused mainly on board visualization with React, data flow and AI algorithms.
 
+![](ShallowBlue.png)
+
 ### Installation
 
 After cloning this repository, in the project directory, you have to install dependencies:
